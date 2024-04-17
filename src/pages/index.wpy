@@ -53,15 +53,9 @@
 <script>
 import wepy from '@wepy/core'
 
-const a = []
-console.log('name', a)
 wepy.page({
   data: {
     tipsList: [
-      {
-        title: 'test123',
-        routerPath: ''
-      },
       {
         title: '✅ 支持类Vue语法进行开发',
         routerPath: ''
@@ -71,11 +65,23 @@ wepy.page({
         routerPath: '/pages/demo/request-demo'
       },
       {
+        title: '✅ 类Vuex 状态管理库的支持',
+        routerPath: '/pages/demo/vuex-demo'
+      },
+      {
         title: '✅  REM 移动端适配',
         routerPath: ''
       },
       {
         title: '✅  ESLint 统一代码格式校验',
+        routerPath: ''
+      },
+      {
+        title: '✅  Prettier 统一代码美化',
+        routerPath: ''
+      },
+      {
+        title: '✅  Husky 代码提交统一检测',
         routerPath: ''
       }
     ]
@@ -101,7 +107,8 @@ wepy.page({
   navigationBarTextStyle: 'black',
   usingComponents: {
     'BadNetwork': '~@components/Bad-Network/index',
-    'HelloWorld': '~@components/Hello-World/index'
+    'HelloWorld': '~@components/Hello-World/index',
+    "slide-view": "module:miniprogram-slide-view"
   }
 }
 </config>

@@ -5,24 +5,24 @@ export default new Vuex.Store({
     counter: 0
   },
   mutations: {
-    increment (state) {
+    increment(state) {
       state.counter++
     },
-    decrement (state) {
+    decrement(state) {
       state.counter--
     }
   },
   actions: {
-    increment ({ commit }) {
+    increment({ commit }) {
       commit('increment')
     },
-    decrement ({ commit }) {
+    decrement({ commit }) {
       commit('decrement')
     },
-    incrementAsync ({ commit }) {
+    incrementAsync({ commit }) {
       setTimeout(() => {
         commit('increment')
       }, 1000)
     }
   }
-});
+})
