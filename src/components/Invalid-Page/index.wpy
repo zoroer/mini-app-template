@@ -1,0 +1,82 @@
+<!--
+  项目不存在或已下架
+  demo: <InvalidPage v-if="isInvalid"></InvalidPage>
+  需要在接入的业务页面控制显隐
+-->
+
+<style lang="less" scoped>
+  .all-page-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: #fff;
+    padding: 236rpx 92rpx 0 128rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.page-top {
+      padding-top: 412rpx;
+    }
+    .icon {
+      width: 530rpx;
+      height: 404rpx;
+    }
+    .box-text {
+      transform: translateY(-150rpx);
+      font-size: 32rpx;
+      line-height: 45rpx;
+      text-align: center;
+      font-family: PingFangSC-Regular, PingFang SC;
+      .info {
+        font-weight: 400;
+        color: #999999;
+      }
+      .refresh-btn {
+        margin-top: 24rpx;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300rpx;
+        height: 90rpx;
+        background: linear-gradient(90deg, #EAAB8D 0%, #D5835D 100%);
+        border-radius: 10rpx;
+        font-weight: 400;
+      }
+    }
+  }
+</style>
+
+<template>
+  <section :class="{'all-page-box': true, 'page-top': isPageTop}">
+    <img class="icon" src="https://static-cdn.kunyuanfund.com/photo/invalid_icon.png" alt="invalid" />
+    <section class="box-text">
+      <p class="info">该页内容不存在</p>
+      <button class="refresh-btn" @tap="backHome">返回首页</button>
+    </section>
+  </section>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+wepy.component({
+    props: {
+      // 页面是否通顶展示
+      isPageTop: {
+        type: Boolean,
+        default: false
+      }
+    },
+    methods: {
+      backHome () {
+        wx.reLaunch({
+          url: '/pages/index'
+        })
+      }
+    }
+  })
+</script>

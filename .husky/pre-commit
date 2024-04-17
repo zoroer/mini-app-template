@@ -1,0 +1,7 @@
+#!/usr/local/bin/bash
+
+bash "$(dirname -- "$0")/_/husky.sh"
+
+echo "[begin]开始进行代码检查以及自动修复"
+npx lint-staged
+echo "[done]完成检查! 如有问题，请根据提示修复"

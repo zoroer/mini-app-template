@@ -1,0 +1,84 @@
+<!--
+  无网络组件
+  demo: <BadNetwork v-if="isOffline"></BadNetwork>
+  需要在接入的业务页面控制显隐
+-->
+<style lang="less" scoped>
+  .all-page-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: #fff;
+    padding: 158rpx 103rpx 0 128rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .icon {
+      width: 519rpx;
+      height: 512rpx;
+    }
+    .box-text {
+      transform: translateY(-150rpx);
+      font-size: 32rpx;
+      line-height: 45rpx;
+      text-align: center;
+      font-family: PingFangSC-Regular, PingFang SC;
+      .info {
+        font-weight: 400;
+        color: #999999;
+      }
+      .refresh-btn {
+        margin-top: 24rpx;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300rpx;
+        height: 90rpx;
+        background: linear-gradient(90deg, #EAAB8D 0%, #D5835D 100%);
+        border-radius: 10rpx;
+        font-weight: 400;
+      }
+    }
+  }
+</style>
+
+<template>
+  <section class="all-page-box">
+    <img class="icon" src="/static/imgs/common/bad_network_icon.png" alt="badNetwork" />
+    <section class="box-text">
+      <p class="info">请检查网络</p>
+      <button class="refresh-btn" @tap="reloadPage">刷新重试</button>
+    </section>
+  </section>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+import { objToUrl } from '../../common/utils'
+
+wepy.component({
+    methods: {
+      getNetwork () {
+        return wx.getNetworkType().then(res => {
+          return res.networkType
+        })
+      },
+      async reloadPage () {
+        const networkType = await this.getNetwork()
+        // [none] 非none标明当前有网络
+        if (networkType !== 'none') {
+          const pages = getCurrentPages() // eslint-disable-line
+          const { route, options } = pages[pages.length - 1]
+          const pageParams = objToUrl(options)
+          wx.redirectTo({
+            url: `/${route}${pageParams}`
+          })
+        }
+      }
+    }
+  })
+</script>

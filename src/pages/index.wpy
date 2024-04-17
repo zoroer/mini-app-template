@@ -1,0 +1,102 @@
+<style lang="less" scoped>
+  .root-box {
+    background: #f7f8fa;
+    min-height: 100vh;
+    .tips-box {
+      margin: 0 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #fff;
+    }
+    .tips-list {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      overflow: hidden;
+      font-size: 14px;
+      &::after {
+        content: "";
+        position: absolute;
+        box-sizing: border-box;
+        pointer-events: none;
+        right: 10px;
+        bottom: 0;
+        left: 10px;
+        border-bottom: 1px solid #ebedf0;
+        transform: scaleY(.5);
+      }
+    }
+  }
+</style>
+
+<template>
+  <div class="root-box">
+    <HelloWorld msg="基于WePY框架搭建的开箱即用小程序项目基础模板" />
+
+    <div class="tips-box">
+      <p
+        class="tips-list"
+        v-for="(tips, index) in tipsList"
+        :key="index"
+        @tap="jumpDemoPage(tips.routerPath)">
+        {{ tips.title }}
+        <i class="arrow" v-if="tips.routerPath">demo ></i>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+
+wepy.page({
+    data: {
+      tipsList: ([
+        {
+          title: '✅ 支持类Vue语法进行开发',
+          routerPath: ''
+        },
+        {
+          title: '✅ 异步请求统一封装',
+          routerPath: '/pages/demo/request-demo'
+        },
+        {
+          title: '✅  REM 移动端适配',
+          routerPath: ''
+        },
+        {
+          title: '✅  ESLint 统一代码格式校验',
+          routerPath: ''
+        }
+      ])
+    },
+    methods: {
+      jumpDemoPage (url) {
+        wx.navigateTo({
+          url
+        })
+      }
+    },
+    async onLoad() {
+    },
+    onShow() {
+    },
+    onShareAppMessage() {}
+  })
+</script>
+
+<config>
+{
+  backgroundTextStyle: 'light',
+  navigationBarBackgroundColor: '#fff',
+  navigationBarTitleText: 'min-app-template',
+  navigationBarTextStyle: 'black',
+  usingComponents: {
+    'BadNetwork': '~@components/Bad-Network/index',
+    'HelloWorld': '~@components/Hello-World/index'
+  }
+}
+</config>

@@ -1,0 +1,76 @@
+<!--
+  图片加载组件，未加载前用统一的占位处理
+  demo: <LoadImg :url="xxx"></LoadImg>
+-->
+
+<style lang="less" scoped>
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+</style>
+
+<template>
+  <image
+    class="bg-img"
+    :mode="mode"
+    :lazy-load="true"
+    :src="(needSeatImg && loadingImg) ? seatImgPath : url"
+    @load="imgLoad"
+    @tap="previewImage"
+    alt="bg">
+  </image>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+wepy.component({
+    props: {
+      url: {
+        type: String,
+        default: '',
+        required: true
+      },
+      allImagesUrl: {
+        type: Array,
+        default: []
+      },
+      currentIndex: {
+        type: Number,
+        default: 0
+      },
+      mode: {
+        type: String,
+        default: 'aspectFit'
+      },
+      tapPreview: {
+        type: Boolean,
+        default: false
+      },
+      needSeatImg: {
+        type: Boolean,
+        default: true
+      }
+    },
+    data: {
+      seatImgPath: '/static/imgs/index/seat_loading.png',
+      loadingImg: true
+    },
+    methods: {
+      imgLoad () {
+        this.loadingImg = false
+      },
+      previewImage () {
+        if (this.tapPreview) {
+          wx.previewImage({
+            current: this.allImagesUrl[this.currentIndex],
+            urls: this.allImagesUrl
+          })
+        }
+      }
+    }
+  })
+</script>

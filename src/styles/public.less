@@ -1,0 +1,55 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.leave-out{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+button{
+  padding: 0;
+  background:transparent;
+  border-radius: 0;
+  &::after{
+    border: none;
+  }
+}
+
+// 单行省略
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+@font-face{
+  font-family: DINPro-Bold;
+  src: url('https://static-cdn.kunyuanfund.com/css/DIN-Bold.otf');
+}
+.DIN-Bold {
+  font-family: DINPro-Bold;
+  &.hide {
+    position: absolute;
+    z-index: -999;
+    top: -9999px;
+  }
+}
+
+.grayColor {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+}

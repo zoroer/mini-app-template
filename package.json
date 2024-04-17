@@ -1,0 +1,68 @@
+{
+  "name": "@uni-web-lab/mini-app-template",
+  "version": "0.0.1",
+  "description": "mini-app-template是一个wepy框架搭建的小程序标准项目模板，并对日常的开发工具都做了封装。",
+  "main": "weapp/app.js",
+  "scripts": {
+    "dev": "cross-env envTarget=dev ./node_modules/.bin/wepy build --watch",
+    "proxy": "cross-env envTarget=proxy ./node_modules/.bin/wepy build --watch",
+    "build": "cross-env NODE_ENV=production envTarget=prod ./node_modules/.bin/wepy build --no-cache",
+    "clean": "rm -rf weapp",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoroer/mini-app-template.git"
+  },
+  "keywords": [
+    "mini-app",
+    "template",
+    "wepy"
+  ],
+  "author": "zoroer",
+  "license": "MIT",
+  "dependencies": {
+    "@wepy/core": "^2.0.0-alpha.16",
+    "@wepy/use-promisify": "^2.1.0",
+    "@wepy/x": "^2.1.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "vue": "^2.7.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@wepy/babel-plugin-import-regenerator": "0.0.2",
+    "@wepy/cli": "^2.0.0-alpha.28",
+    "@wepy/compiler-babel": "^2.0.1",
+    "@wepy/compiler-less": "^2.0.1",
+    "@wepy/compiler-postcss": "^2.1.0",
+    "@wepy/plugin-define": "^2.1.0",
+    "@wepy/plugin-uglifyjs": "^2.1.0",
+    "autoprefixer": "^9.7.6",
+    "babel-eslint": "^7.2.1",
+    "cross-env": "^5.1.3",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-plugin-html": "^2.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "less": "^3.8.1",
+    "wepy-eslint": "^1.5.3"
+  },
+  "bugs": {
+    "url": "https://github.com/zoroer/mini-app-template/issues"
+  },
+  "homepage": "https://github.com/zoroer/mini-app-template#readme",
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,wpy}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+<style lang="less" scoped>
+  @import '../wxParse/wxParse.wxss';
+</style>
+
+<template>
+  <div>
+    <import src="../wxParse/wxParse.wxml" />
+    <wx-template is="wxParse" data="{{wxParseData: htmlParserTpl.nodes}}"></wx-template>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  const WxParse = require('../wxParse/wxParse')
+
+  wepy.component({
+    props: {
+      field: { // bindName绑定的数据名(必填)
+        type: String,
+        default: 'htmlParserName'
+      },
+      content: { // 需要解析的html
+        type: String,
+        default: ''
+      },
+      type: { // type可以为html或者md(必填)
+        type: String,
+        default: 'html'
+      },
+      padding: { // imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+        type: Number,
+        default: 0
+      }
+    },
+    data: {
+      htmlParserTpl: {}
+    },
+    watch: {
+      content(val) {
+        this.htmlParse()
+      }
+    },
+    methods: {
+      htmlParse() {
+        try {
+          let htmlContent = WxParse.wxParse(
+            this.field,
+            this.type,
+            this.content || this.content.default,
+            this.$wx,
+            this.padding
+          )
+          this.htmlParserTpl = htmlContent[this.field]
+        } catch (e) {
+          console.warn('转化内容为空', e)
+        }
+      }
+    }
+  })
+</script>

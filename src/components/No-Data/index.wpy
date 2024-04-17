@@ -1,0 +1,22 @@
+<!-- 暂无数据 -->
+<template>
+  <div class="no-data-box">
+    <image src="/static/imgs/noData/no_data_img.png" />
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core'
+
+wepy.component({
+})
+</script>
+
+<style lang="less" scoped>
+.no-data-box {
+  image {
+    width: 514rpx;
+    height: 464rpx;
+  }
+}
+</style>

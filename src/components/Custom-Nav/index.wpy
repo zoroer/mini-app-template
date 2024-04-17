@@ -1,0 +1,160 @@
+<!-- 自定义导航 -->
+<template>
+  <div
+    :class="{'custom-nav': true, 'nav-bg': scrollStatus}"
+    :style="{height: navBarHeight+'px', 'padding-top': menuTop+'px'}"
+  >
+    <div class="custom-nav-content" :style="{height: menuHeight+'px'}">
+      <div class="back-icon-box" @tap="back" v-if="showBack">
+        <img
+          class="back-img"
+          :src="scrollStatus
+            ? '/static/imgs/common/back_icon_black.png'
+            : '/static/imgs/common/back_icon_white.png'"
+        />
+      </div>
+      <div
+        :class="{ 'home-icon-box': true, 'scroll-home-icon': scrollStatus }"
+        @tap="forwardHome"
+        v-else
+      >
+        <img class="home-img" src="/static/imgs/common/home.png" />
+      </div>
+      <div class="title">
+        {{ scrollStatus || initialTitleShow ? title : '' }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core'
+import { getNavBarHeight, saveMenuButtonInfo } from '../../common/utils'
+
+wepy.component({
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    initialTitleShow: {
+      type: Boolean,
+      default: false
+    },
+    scrollStatus: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: {
+    navBarHeight: 0,
+    menuHeight: 0,
+    menuTop: 0,
+    // 是否显示返回
+    showBack: true
+  },
+  methods: {
+    setNavBarData() {
+      const menuButtonInfo = wx.getStorageSync('menuButtonInfo')
+      const navBarHeight = getNavBarHeight()
+      const { height, top } = menuButtonInfo
+      this.navBarHeight = navBarHeight
+      this.menuHeight = height
+      this.menuTop = top
+    },
+    back() {
+      wx.navigateBack()
+    },
+    forwardHome() {
+      wx.reLaunch({
+        url: '/pages/index'
+      })
+    }
+  },
+  attached() {
+    const menuData = wx.getStorageSync('menuButtonInfo')
+    if (menuData.height === 0) {
+      saveMenuButtonInfo()
+    }
+    this.setNavBarData()
+    const pages = getCurrentPages() // eslint-disable-line
+    if (pages.length === 1) {
+      this.showBack = false
+    }
+  }
+})
+</script>
+
+<style lang="less" scoped>
+.custom-nav {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+
+  &.nav-bg {
+    background-color: #fff;
+    .custom-nav-content {
+      .title {
+        color: #333333;
+      }
+    }
+  }
+
+  .custom-nav-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .back-icon-box {
+      position: absolute;
+      width: 44rpx;
+      height: 44rpx;
+      left: 30rpx;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .back-img {
+        width: 18rpx;
+        height: 32rpx;
+      }
+
+      .back-img-black {
+        width: 44rpx;
+        height: 44rpx;
+      }
+    }
+
+    .home-icon-box {
+      position: absolute;
+      left: 30rpx;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60rpx;
+      height: 60rpx;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+
+      &.scroll-home-icon {
+        border: 1rpx solid rgba(0,0,0,0.08);
+      }
+
+      .home-img {
+        width: 38rpx;
+        height: 34rpx;
+        margin: 13rpx 10rpx 13rpx 12rpx;
+      }
+    }
+    .title {
+      width: 100%;
+      text-align: center;
+      font-size: 36rpx;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+}
+</style>
