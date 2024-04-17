@@ -61,7 +61,9 @@
   "homepage": "https://github.com/zoroer/mini-app-template#readme",
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
+      "eslint --fix"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,wpy}": [
       "prettier --write"
     ]
   }
