@@ -56,7 +56,7 @@ wepy.page({
     data: {
       tipsList: ([
         {
-          title: '✅ 支持类Vue语法进行开发',
+          title: "✅ 支持类Vue语法进行开发",
           routerPath: ''
         },
         {

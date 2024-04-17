@@ -44,10 +44,10 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.join(__dirname, 'src'),
-      '@api': path.join(__dirname, "src/api"),
-      '@pages': path.join(__dirname, "src/pages"),
-      '@common': path.join(__dirname, "src/common"),
-      '@components': path.join(__dirname, "src/components")
+      '@api': path.join(__dirname, 'src/api'),
+      '@pages': path.join(__dirname, 'src/pages'),
+      '@common': path.join(__dirname, 'src/common'),
+      '@components': path.join(__dirname, 'src/components')
     },
     aliasFields: ['wepy', 'weapp'],
     modules: ['node_modules']
