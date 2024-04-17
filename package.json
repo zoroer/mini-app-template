@@ -60,10 +60,10 @@
   },
   "homepage": "https://github.com/zoroer/mini-app-template#readme",
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
+    "src/**/*.{js,ts,tsx}": [
       "eslint --fix"
     ],
-    "src/**/*.{js,jsx,ts,tsx,wpy}": [
+    "src/**/*.{js,ts,tsx,wpy}": [
       "prettier --write"
     ]
   }

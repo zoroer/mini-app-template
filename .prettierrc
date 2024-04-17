@@ -1,5 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/prettierrc",
+  "overrides": [
+    {
+      "files": ["*.wpy"],
+      "options": {
+        "parser": "vue"
+      }
+    }
+  ],
   "semi": false,
   "tabWidth": 2,
   "singleQuote": true,
