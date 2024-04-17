@@ -1,5 +1,5 @@
 # mini-app-template
-mini-app-template是一个WePY框架搭建的小程序标准项目模板，并对日常的开发工具都做了封装。
+> mini-app-template是一个WePY框架搭建的小程序标准项目模板，并对日常的开发工具都做了封装。
 
 ## 开发
  1. 项目代码只使用于微信小程序，不需考虑兼容其他平台；
