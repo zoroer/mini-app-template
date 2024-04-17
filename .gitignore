@@ -8,6 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 weapp/
 
+.git
+
 project.config.json
 project.private.config.json
 
